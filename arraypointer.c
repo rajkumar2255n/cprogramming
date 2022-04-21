@@ -1,28 +1,41 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 int main()
 {
-    int a[10][10];
-    int i,j,n;
-    printf("\n\tEnter no rows need to your matrix:");
+    int m,n;
+    printf("\n\tEnter no of rows needed:");
+    scanf("%d",&m);
+    printf("\n\tEnter no of columns needed:");
     scanf("%d",&n);
-    for(i=0;i<n;i++)
+    int **a;
+    a=(int **)malloc(m*sizeof(int *));
+    for( int i=0;i<m;i++)
     {
-        for(j=0;j<n;j++)
+        a[i]=(int *) malloc(n *sizeof(int));
+    }
+    printf("\n\tEnter matrix elements:");
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
         {
-            printf("\n\tEnter the value of matrix %d X %d:",i+1,j+1);
+            printf("\n\tEnter the element for %d X %d :",i+1,j+1);
             scanf("%d",&a[i][j]);
         }
     }
-    printf("\n\tThe Matrix value is below\n");
-    for(i=0;i<n;i++)
+    printf("\n\tMatrix elements are:\n");
+    for(int i=0;i<m;i++)
     {
-        for(j=0;j<n;j++)
+        for(int j=0;j<n;j++)
         {
             printf("\t");
             printf("%d",a[i][j]);
         }
     printf("\n");
     }
+    for(int i=0;i<m;i++)
+    {
+        free(a[i]);
+    }
+    free(a);
     return 0;
 }
